@@ -3,11 +3,22 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import rootReducer from './modules';
+import {createStore, applyMiddleware} from 'redux';
+import {Provider} from 'react-redux'
+import myLogger from './middlewares/myLogger';
+import logger from 'redux-logger';
+import ReduxThunk from 'redux-thunk';
+import {BrowserRouter} from 'react-router-dom';
+
+const store = createStore(rootReducer,applyMiddleware(ReduxThunk,logger));
 
 ReactDOM.render(
-  <React.StrictMode>
+  <BrowserRouter>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 
