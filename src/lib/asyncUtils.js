@@ -19,8 +19,9 @@ export const createPromiseThunk = (type, promiseCreator) => {
   };
   
   
-  // 리듀서에서 사용 할 수 있는 여러 유틸 함수들입니다.
+  // 리듀서에서 사용 할 수 있는 여러 유틸 함수들입니다. =>초기화용
   export const reducerUtils = {
+
     // 초기 상태. 초기 data 값은 기본적으로 null 이지만
     // 바꿀 수도 있습니다.
     initial: (initialData = null) => ({
@@ -49,8 +50,10 @@ export const createPromiseThunk = (type, promiseCreator) => {
     })
   };
 
-  // 비동기 관련 액션들을 처리하는 리듀서를 만들어줍니다.
+  
+// 비동기 관련 액션들을 처리하는 리듀서를 만들어줍니다.
 // type 은 액션의 타입, key 는 상태의 key (예: posts, post) 입니다.
+
 export const handleAsyncActions = (type, key) => {
   const [SUCCESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`];
   return (state, action) => {

@@ -10,15 +10,20 @@ import myLogger from './middlewares/myLogger';
 import logger from 'redux-logger';
 import ReduxThunk from 'redux-thunk';
 import {BrowserRouter} from 'react-router-dom';
+import { Router } from 'react-router-dom';
+import {createBrowserHistory} from 'history';
 
-const store = createStore(rootReducer,applyMiddleware(ReduxThunk,logger));
+const customHistory = createBrowserHistory();
+const store = createStore(rootReducer,
+  applyMiddleware(ReduxThunk.withExtraArgument({history:customHistory}),logger));
 
+// const store = createStore(rootReducer);
 ReactDOM.render(
-  <BrowserRouter>
-  <Provider store={store}>
-    <App />
-  </Provider>
-  </BrowserRouter>,
+  <Router history={customHistory}>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </Router>,
   document.getElementById('root')
 );
 

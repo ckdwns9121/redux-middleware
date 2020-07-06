@@ -4,6 +4,7 @@ import PostList from '../components/PostList';
 import { getPosts } from '../modules/posts';
 
 function PostListContainer() {
+
   const { data, loading, error } = useSelector(state => state.posts.posts);
   const dispatch = useDispatch();
 
